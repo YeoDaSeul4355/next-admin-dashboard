@@ -30,3 +30,25 @@ export const fetchUsers = async (q, page) => {
     throw new Error("Failed to fetch user!");
   }
 };
+
+// product데이터 가져오는 함수
+export const fetchProducts = async (q, page) => {
+  const regex = new RegExp(q, "i");
+
+  const ITEM_PER_PAGE = 5;
+
+  try {
+    connectToDB();
+
+    const count = await Product.find({ title: { $regex: regex } }).count();
+
+    const products = await Product.find({ title: { $regex: regex } })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+
+    return { count, products };
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch products!");
+  }
+};
