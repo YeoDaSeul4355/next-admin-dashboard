@@ -6,8 +6,13 @@ import Pagination from "@/app/ui/dashboard/pagination/Pagination";
 import { fetchUsers } from "@/app/lib/data";
 
 const UsersPage = async ({ searchParams }) => {
+  // 검색어 가져오기
   const q = searchParams?.q || "";
+
+  // 페이지 번호 가져오기
   const page = searchParams?.page || 1;
+
+  // fetchUsers함수에서 검색된 사용자 목록과 총 사용자 수를 가져옴
   const { users, count } = await fetchUsers(q, page);
 
   return (
