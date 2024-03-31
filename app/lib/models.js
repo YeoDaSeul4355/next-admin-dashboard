@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// 유저
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -40,7 +39,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// 상품
 const productSchema = new mongoose.Schema(
   {
     title: {
